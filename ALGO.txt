@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Courier New", monospace;
+      background-color: #0d0d0d;
+      color: #eaeaea;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #1a1a1a;
+      border-bottom: 1px solid #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 3rem; /* Títulos más grandes */
+      margin-bottom: 1.5rem;
+    }
+
+    .idiomas {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .idiomas button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .idiomas img {
+      width: 30px;
+      height: 20px;
+      border-radius: 3px;
+      transition: transform 0.2s ease;
+    }
+
+    .idiomas img:hover {
+      transform: scale(1.1);
+    }
+
+    .section {
+      padding: 3rem 2rem;
+    }
+
+    .presentacion-box {
+      background: #1f1f1f;       /* gris oscuro */
+      border-radius: 12px;       /* bordes redondeados */
+      padding: 2rem 3rem;
+      width:80%;
+      max-width: 1100px;
+      margin: auto;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    /* El título ahora dentro del recuadro */
+    .presentacion-box h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-bottom: 2px solid #333; /* línea debajo del título */
+      padding-bottom: 0.5rem;
+    }
+
+    .barra-separacion {
+      width: 2px;
+      background: #444;
+      margin: 0 1rem; 
+    }
+
+    /* Sobre mí */
+    .sobre-mi {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .perfil {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+
+    .perfil img {
+      width: 350px; /* Más grande */
+      height: 350px;
+      border-radius: 20%;
+      object-fit: cover;
+      border: 3px solid #eaeaea;
+    }
+
+    .perfil a {
+      display: inline-block;
+      margin: 0.5rem;
+      color: #eaeaea;
+      text-decoration: none;
+      font-size: 1.5rem; /* Letras más grandes */
+    }
+
+    .perfil p {
+      font-size: 1.3rem; /* Letras debajo del perfil más grandes */
+    }
+
+    .perfil a:hover {
+      text-decoration: underline;
+    }
+
+    .descripcion {
+      flex: 2;
+      min-width: 300px;
+      font-size: 1.5rem; /* Más grande */
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    /* Botón CV */
+    .cv-container {
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .cv-link {
+      display: none; /* por defecto no se muestra hasta que el JS elija idioma */
+      background: #444;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      margin-right: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .cv-link:hover {
+      background: #00ff99;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Herramientas */
+    .herramientas-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .herramientas-icons img {
+      width: 70px;
+      height: 70px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s;
+    }
+
+    .herramientas-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Proyectos */
+    .proyectos-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .proyecto-card {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1rem;
+      width: 280px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+      text-align: center;
+    }
+
+    .proyecto-card:hover {
+      transform: scale(1.05);
+      background: #333;
+    }
+
+    .proyecto-card img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .proyecto-card p {
+      margin-top: 0.5rem;
+    }
+
+    .proyecto-link {
+      display: none; /* por defecto no se muestra hasta que el JS elija idioma */
+      background: #444;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      margin-right: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .proyecto-link:hover {
+      background: #00ff99;
+      color: #000;
+      transform: scale(1.05)
+    }
+
+
+    /* Modal proyectos */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      overflow: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .modal-content img {
+      max-width: 90%;
+      margin: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Contenedor de la descripción en modal */
+    .modal p {
+      margin: 2rem auto;              /* centrado con márgenes */
+      padding: 1.5rem 3rem;
+      background: #1f1f1f;            /* recuadro gris oscuro estilo Apple */
+      border-radius: 12px;
+      max-width: 1800px;               /* límite ancho */
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.5rem;
+      box-shadow: 0px 6px 24px rgba(0,0,0,0.4);
+    }
+
+    /* Más espacio entre descripción e imágenes */
+    .modal-content {
+      margin-top: 2rem;
+    }
+
+    /* Botón de cierre (X) */
+    .modal .close {
+      position: fixed;     /* siempre en el mismo lugar */
+      top: 30px;
+      right: 40px;
+      font-size: 4rem;     /* más grande */
+      cursor: pointer;
+      color: #ff4d4d;      /* rojo vistoso */
+      font-weight: bold;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .modal .close:hover {
+      transform: scale(1.2);
+      color: #ff9999;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+  <header>
+    <h1 id="titulo">Lucentini Joaquin | Mi Portfolio</h1>
+    <div class="idiomas">
+      <button onclick="cambiarIdioma('es')">
+        <img src="https://flagcdn.com/w20/ar.png" alt="Español" />
+      </button>
+      <button onclick="cambiarIdioma('en')">
+        <img src="https://flagcdn.com/w20/us.png" alt="English" />
+      </button>
+    </div>
+  </header>
+
+  <!-- Sobre mí -->
+  <section class="section">
+    <div class="presentacion-box">
+      <h2 id="presentacion-title">Presentación</h2>
+      
+      <div class="sobre-mi">
+        <!-- Perfil -->
+        <div class="perfil">
+          <img src="utils/perfil.jpg" alt="Foto de perfil">
+          <div>
+            <a href="https://github.com/JoacoLucen" target="_blank">
+              <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/joaquin-lucentini-a48066277/" target="_blank">
+              <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+          </div>
+          <p>📩 joacolucen96@gmail.com</p>
+        </div>
+
+        <!-- Barra de separación -->
+        <div class="barra-separacion"></div>
+
+        <!-- Descripción -->
+        <div class="descripcion">
+          <p id="descripcion-texto">
+            👋Hola! Soy estudiante de Ciencia de Datos en Organizaciones en la Universidad Nacional de La Plata (UNLP).<br><br>
+            <em>Me consiredo una persona apasionada en lo que le gusta y con mucha convicción. Me gusta aprender y mejorar constantemente, soy una persona bastante autodidacta. 
+            Disfruto de los desafíos que me permiten crecer profesional y personalmente.</em><br><br>
+            No tengo experiencia en el rubro, pero estoy ansioso por comenzar a aplicar mis conocimientos en proyectos reales y poder aprender del proceso.
+          </p>
+
+          <!-- Botones CV -->
+          <div class="cv-container">
+            <a id="cv-link-es" class="cv-link" href="utils/cv-es.pdf" target="_blank">📄 Descargar CV</a>
+            <a id="cv-link-en" class="cv-link" href="utils/cv-en.pdf" target="_blank" style="display:none;">📄 Download CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Herramientas -->
+  <section class="section">
+    <h2 id="herramientas-title">Herramientas</h2>
+    <div class="herramientas-icons">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/streamlit/streamlit-original.svg" alt="Streamlit" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/azuresqldatabase/azuresqldatabase-plain.svg" alt="SQL" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/matplotlib/matplotlib-plain.svg" alt="Matplotlib" />
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section class="section">
+    <h2 id="proyectos-title">Proyectos</h2>
+    <div class="proyectos-grid">
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto1')">
+        <img src="utils/python-logo.png" alt="Proyecto 1">
+        <p id="proyecto1-breve-es">EPH con Python y Streamlit</p>
+        <p id="proyecto1-breve-en" style="display:none">EPH with Python and Streamlit</p>
+      </div>
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto2')">
+        <img src="utils/google-sheets-logo.png" alt="Proyecto 2">
+        <p id="proyecto2-breve-es">Cartera de inversiones con Google Sheets</p>
+        <p id="proyecto2-breve-en" style="display:none;">Investment Portfolio with Google Sheets</p>
+      </div>
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto3')">
+        <img src="utils/logo-python-sql.png" alt="Proyecto 3">
+        <p id="proyecto3-breve-es">Escrapeo y Analisis de Datos</p>
+        <p id="proyecto3-breve-en" style="display:none;">Data Scraping and Analysis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Proyecto 1 -->
+  <div id="proyecto1" class="modal" onclick="cerrarClickFuera(event, 'proyecto1')">
+    <span class="close" onclick="cerrarProyecto('proyecto1')">&times;</span>
+    <p id="proyecto1-desc-es">
+      <strong>
+        Utilizacion de la EPH para Limpieza y Visualizacion de Datos: Utilice Python para la limpieza y visualizacion de la EPH (Encuesta Permanente de Hogares) y mostre los resultados, de una forma interactiva, usando Streamlit.<br><br>
+        Objetivo: Aplicar mis conocimientos y estudios para crear de forma practica y simple indicadores demograficos, mediante objetos graficos.
+      </strong>
+    </p>
+    <p id="proyecto1-desc-en" style="display:none;">
+      <strong>
+        Utilizing the EPH for Data Cleaning and Visualization: I used Python to clean and visualize data from the EPH (Permanent Household Survey), displaying the results in an interactive format using Streamlit.<br><br>
+        Objective: To apply my knowledge and skills to create a practical and simple display of demographic indicators using graphical objects.
+      </strong>
+    </p>
+
+    <a id="proyecto1-link-es" href="https://github.com/JoacoLucen/EPH-Insight-App" target="_blank" class="proyecto-link">
+      Ver Proyecto en GitHub
+    </a>
+    <a id="proyecto1-link-en" href="https://github.com/JoacoLucen/EPH-Insight-App" target="_blank" class="proyecto-link" style="display:none;">
+      View Project in GitHub
+    </a>
+
+    <div class="modal-content">
+      <img src="utils/proyecto1-python.png">
+      <img src="utils/proyecto1.1-python.png">
+      <img src="utils/proyecto1.2-python.png">
+      <img src="utils/proyecto1.3-python.png">
+      <img src="utils/proyecto1.4-python.png">
+    </div>
+  </div>
+
+  <!-- Modal Proyecto 2 -->
+  <div id="proyecto2" class="modal" onclick="cerrarClickFuera(event, 'proyecto2')">
+    <span class="close" onclick="cerrarProyecto('proyecto2')">&times;</span>
+    <p id="proyecto2-desc-es">
+      <strong>
+        Utilizacion de Google Sheets y Google Finance para crear un portfolio: Use herramientas como Google Sheets y Google Finance para crear una plantilla que permitiera tener un control de un portfolio de inversiones. <br><br>
+        Objetivo: Generar una plantilla que ayude a las personas a controlar sus activos financieros. Obteniendo datos pasados y presentes, gastos, ingresos, promedios, y rentabilidad, bajo un modelo FIFO (primero entrado - primero salido) que ayude a controlar de mejor forma el portfolio.
+      </strong>
+    </p>
+    <p id="proyecto2-desc-en" style="display:none;">
+      <strong>
+        Using Google Sheets and Google Finance to Create a Portfolio Tracker: I used tools like Google Sheets and Google Finance to build a template for tracking an investment portfolio.<br><br>
+        Objective: To create a template that helps an individual manage their financial assets. This includes obtaining past and present data on expenses, income, averages, and profitability, all under a FIFO (First-In, First-Out) model to better control the portfolio.
+      </strong>
+    </p>
+
+    <a id="proyecto2-link-es" href="https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing" target="_blank" class="proyecto-link">
+      Ver Proyecto en Google Sheets
+    </a>
+    <a id="proyecto2-link-en" href="https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing" target="_blank" class="proyecto-link" style="display:none;">
+      View Project in Google Sheets
+    </a>
+    <div class="modal-content">
+      <img src="utils/proyecto1-sheets.png">
+      <img src="utils/proyecto1.1-sheets.png">
+      <img src="utils/proyecto1.2-sheets.png">
+      <img src="utils/proyecto1.3-sheets.png">
+      <img src="utils/proyecto1.4-sheets.png">
+    </div>
+  </div>
+
+    <!-- Modal Proyecto 3 -->
+  <div id="proyecto3" class="modal" onclick="cerrarClickFuera(event, 'proyecto3')">
+    <span class="close" onclick="cerrarProyecto('proyecto3')">&times;</span>
+    <p id="proyecto3-desc-es">
+      <strong>
+        Cree un script en Python que permite escrapear titulos de diferentes paginas web de medios de noticias en Argentina y los almacene en SQLite. Luego, utilizando Streamlit se ejecuta una limpieza de los datos y se representan graficamente.<br><br>
+        Agregue una funcionalidad "automatizada" para poder descargar un archivo .pdf con los datos generados y su respectivo Analisis.
+      </strong>
+    </p>
+    <p id="proyecto3-desc-en" style="display:none;">
+      <strong>
+        Create a Python script that allows you to scrape titles from different news media websites in Argentina and store them in SQLite. Then, using Streamlit, a cleanup of the data is executed and it is represented graphically.<br><br>
+        Add an "automated" functionality to be able to download a.pdf file with the generated data and its respective Analysis.
+      </strong>
+    </p>
+
+    <a id="proyecto3-link-es" href="https://github.com/JoacoLucen/scraping_web" target="_blank" class="proyecto-link">
+      Ver Proyecto en GitHub
+    </a>
+    <a id="proyecto3-link-en" href="https://github.com/JoacoLucen/scraping_web" target="_blank" class="proyecto-link" style="display:none;">
+      View Project in GitHub
+    </a>
+    <div class="modal-content">
+      <img src="utils/proyecto3-python.png">
+      <img src="utils/proyecto3.1-python.png">
+      <img src="utils/proyecto3.2-python.png">
+      <img src="utils/proyecto3.3-python.png">
+    </div>
+  </div>
+
+  <script>
+    // Idiomas
+    function cambiarIdioma(lang) {
+      const titulo = document.getElementById("titulo");
+      const presentacionTitle = document.getElementById("presentacion-title");
+      const herramientasTitle = document.getElementById("herramientas-title");
+      const proyectosTitle = document.getElementById("proyectos-title");
+      const descripcionTexto = document.getElementById("descripcion-texto");
+      const cvEs = document.getElementById("cv-link-es");
+      const cvEn = document.getElementById("cv-link-en");
+
+      if (lang === "es") {
+        titulo.textContent = "Lucentini Joaquin | Mi Portfolio";
+        presentacionTitle.textContent = "Presentación";
+        herramientasTitle.textContent = "Herramientas";
+        proyectosTitle.textContent = "Proyectos";
+        descripcionTexto.innerHTML = "👋Hola! Soy estudiante de Ciencia de Datos en Organizaciones en la Universidad Nacional de La Plata (UNLP).<br><br><em>Me consiredo una persona apasionada en lo que le gusta y con mucha convicción. Me gusta aprender y mejorar constantemente, soy una persona bastante autodidacta. Disfruto de los desafíos que me permiten crecer profesional y personalmente.</em><br><br>No tengo experiencia en el rubro, pero estoy ansioso por comenzar a aplicar mis conocimientos en proyectos reales y poder aprender del proceso.";
+        cvEs.style.display = "inline-block";
+        cvEn.style.display = "none";
+        document.getElementById("proyecto1-desc-es").style.display = "block";
+        document.getElementById("proyecto1-desc-en").style.display = "none";
+        document.getElementById("proyecto2-desc-es").style.display = "block";
+        document.getElementById("proyecto2-desc-en").style.display = "none";
+        document.getElementById("proyecto3-desc-es").style.display = "block";
+        document.getElementById("proyecto3-desc-en").style.display = "none";
+        document.getElementById("proyecto1-breve-es").style.display = "block";
+        document.getElementById("proyecto1-breve-en").style.display = "none";
+        document.getElementById("proyecto2-breve-es").style.display = "block";
+        document.getElementById("proyecto2-breve-en").style.display = "none";
+        document.getElementById("proyecto3-breve-es").style.display = "block";
+        document.getElementById("proyecto3-breve-en").style.display = "none";
+        document.getElementById("proyecto1-link-es").style.display = "inline-block";
+        document.getElementById("proyecto1-link-en").style.display = "none";
+        document.getElementById("proyecto2-link-es").style.display = "inline-block";
+        document.getElementById("proyecto2-link-en").style.display = "none";
+        document.getElementById("proyecto3-link-es").style.display = "inline-block";
+        document.getElementById("proyecto3-link-en").style.display = "none";
+      } else {
+        titulo.textContent = "Lucentini Joaquin | My Portfolio";
+        presentacionTitle.textContent = "About Me";
+        herramientasTitle.textContent = "Tools";
+        proyectosTitle.textContent = "Projects";
+        descripcionTexto.innerHTML = "👋Hello! I'm a Data Science in Organizations student at the National University of La Plata (UNLP).<br><br><em>I consider myself a passionate and highly committed person. I love to constantly learn and improve, and I'm quite self-taught. I enjoy challenges that allow me to grow both professionally and personally.</em><br><br>I don't have experience in the field, but I'm eager to start applying my knowledge to real projects and learn from the process.";
+        cvEs.style.display = "none";
+        cvEn.style.display = "inline-block";
+        document.getElementById("proyecto1-desc-es").style.display = "none";
+        document.getElementById("proyecto1-desc-en").style.display = "block";
+        document.getElementById("proyecto2-desc-es").style.display = "none";
+        document.getElementById("proyecto2-desc-en").style.display = "block";
+        document.getElementById("proyecto3-desc-es").style.display = "none";
+        document.getElementById("proyecto3-desc-en").style.display = "block";
+        document.getElementById("proyecto1-breve-es").style.display = "none";
+        document.getElementById("proyecto1-breve-en").style.display = "block";
+        document.getElementById("proyecto2-breve-es").style.display = "none";
+        document.getElementById("proyecto2-breve-en").style.display = "block";
+        document.getElementById("proyecto3-breve-es").style.display = "none";
+        document.getElementById("proyecto3-breve-en").style.display = "block";
+        document.getElementById("proyecto1-link-es").style.display = "none";
+        document.getElementById("proyecto1-link-en").style.display = "inline-block";
+        document.getElementById("proyecto2-link-es").style.display = "none";
+        document.getElementById("proyecto2-link-en").style.display = "inline-block";
+        document.getElementById("proyecto3-link-es").style.display = "none";
+        document.getElementById("proyecto3-link-en").style.display = "inline-block";
+      }
+    }
+
+    // Modales proyectos
+    function abrirProyecto(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    function cerrarProyecto(id) {
+      document.getElementById(id).style.display = "none";
+    }
+    function cerrarClickFuera(event, id) {
+      if (event.target.classList.contains("modal")) {
+        cerrarProyecto(id);
+      }
+    }
+
+    // Default idioma español
+    cambiarIdioma("es");
+  </script>
+</body>
+</html>

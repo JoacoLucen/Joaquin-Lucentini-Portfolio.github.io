@@ -1,0 +1,114 @@
+\documentclass[11pt, a4paper]{article}
+% --- Configuración básica del documento ---
+\usepackage[utf8]{inputenc}      % Soporte para caracteres UTF-8 (tildes, ñ)
+\usepackage[T1]{fontenc}         % Mejor renderizado de fuentes
+\usepackage[spanish]{babel}      % Idioma español (hyphenation, textos automáticos)
+\usepackage[margin=0.75in]{geometry} % Márgenes reducidos para aprovechar espacio
+\usepackage{xcolor}              % Soporte para colores personalizados
+\usepackage{parskip}             % Espaciado entre párrafos (no sangría)
+\usepackage{fontawesome}         % Iconos (email, teléfono, etc.)
+\usepackage{hyperref}            % Links clickeables (email, LinkedIn)
+\usepackage{enumitem}            % Control avanzado de listas
+
+% --- Colores personalizados ---
+\definecolor{primary}{RGB}{0, 90, 156}   % Azul UNLP para títulos
+\definecolor{secondary}{RGB}{100, 100, 100} % Gris para texto secundario
+
+% --- Estilo de secciones ---
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{6pt} % Espaciado: antes/después de sección
+
+% --- Comandos personalizados ---
+\newcommand{\cvitem}[2]{\textbf{#1} \hfill \color{secondary}#2} % Para fechas/lugares
+\newcommand{\iconitem}[2]{\makebox[1.5em]{\fa#1} #2} % Ícono + texto (ej: \faEnvelope)
+
+\begin{document}
+
+% --- Encabezado ---
+\begin{center}
+    {\Huge \textbf{Lucentini Joaquín}}
+    \vspace{10pt} % Espacio vertical después del nombre
+
+    \begin{tabular}{l @{\hspace{1.5cm}} l}
+        % --- COLUMNA IZQUIERDA (Contacto) ---
+        \begin{tabular}[t]{@{}l@{}}
+            \faEnvelope{} joacolucen96@gmail.com \\
+            \faMapMarker{} La Plata, Buenos Aires \\
+        \end{tabular}
+        & % Separa las columnas
+        % --- COLUMNA DERECHA (Páginas) ---
+        \begin{tabular}[t]{@{}l@{}}
+            \faLinkedin{} \href{https://www.linkedin.com/in/joaquin-lucentini-a48066277/}{linkedin.com/Joaquin-Lucentini} \\
+            \faGithub{} \href{https://github.com/JoacoLucen}{github.com/Joaquin-Lucentini}\\
+            \faGlobe{} \href{https://joacolucen.github.io/Joaquin-Lucentini-Portfolio/}{Mi Portfolio Web}
+        \end{tabular}
+    \end{tabular}
+\end{center}
+
+
+% --- Sección: Perfil ---
+\section*{Perfil}
+Estudiante de \textbf{Ciencia de Datos en Organizaciones} en la \textbf{Universidad Nacional de La Plata} (UNLP), actualmente me encuentro cursando el \textbf{2do año} de la carrera (ingreso en 2024). Interesado en machine learning, visualización, análisis y manejo de grandes volumenes de datos, trabajo en equipo, superación personal. Busco oportunidades para aplicar conocimientos académicos en proyectos reales.
+
+% --- Sección: Formación Académica ---
+\section*{Formación Académica}
+\begin{itemize}[leftmargin=*]
+    \item \cvitem{Ciencia de Datos en Organizaciones}{UNLP | 2024--Presente}
+    \begin{itemize}
+        \item Promedio: 8.6/10.00
+    \end{itemize}
+    \item \cvitem{Bachiller en Ciencias Naturales}{Instituto Niño Jesus | 2015--2020}
+\end{itemize}
+
+% --- Sección: Experiencia Laboral ---
+%\section*{Experiencia Laboral}
+%\begin{itemize}[leftmargin=*]
+    %\item \cvitem{Auxiliar administrativo}{Centro Universitario Regional Saladillo | Feb 2023 -- Dic 2024}
+    %\item \cvitem{Auxiliar administrativo}{Pro-Feed Saladillo | Trabajo de verano}
+    % Añade más items según necesites
+%\end{itemize}
+
+% --- Sección: Habilidades Técnicas ---
+\section*{Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Lenguajes}: Python (intermedio)
+    \item \textbf{Herramientas}: Jupyter, Git, Excel, Pandas, Matplotlib, Streamlit, Google Sheets, Google Finance
+    \item \textbf{Idiomas}: Inglés (basico)
+\end{itemize}
+
+% --- Sección: Proyectos ---
+\section*{Proyectos}
+\begin{itemize}[leftmargin=*]
+    \item \cvitem{Limpieza y visualización de datos del INDEC}{Python | 2025}
+    \begin{itemize}
+        \item Utilizacion de la EPH para Limpieza y Visualizacion de Datos: Utilice Python para la limpieza y visualizacion de la EPH (Encuesta Permanente de Hogares) y mostre los resultados, de una forma interactiva, usando Streamlit.
+        \item Objetivo: Aplicar mis conocimientos y estudios para crear de forma practica y simple indicadores demograficos, mediante objetos graficos.
+        \item \href{https://github.com/JoacoLucen/EPH-Insight-App}{Proyecto en GitHub}
+        \item \href{https://eph-insight-app-joacolucentini.streamlit.app/}{Proyecto en la web}
+    \end{itemize}
+    \item \cvitem{Planilla de Inversiones Personales}{Google Sheets | 2025}
+    \begin{itemize}
+        \item Utilizacion de Google Sheets y Google Finance para crear un portfolio: Use herramientas como Google Sheets y Google Finance para crear una plantilla que permitiera tener un control de un portfolio de inversiones.
+        \item Objetivo: Generar una plantilla que ayude a las personas a controlar sus activos financieros. Obteniendo datos pasados y presentes, gastos, ingresos, promedios, y rentabilidad, bajo un modelo FIFO (primero entrado - primero salido) que ayude a controlar de mejor forma el portfolio.
+        \item \href{https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing}{Link a la Planilla}
+    \end{itemize}
+    \cvitem { }
+    \item \cvitem{Escreapeo, Limpieza, Visualizacion y Analisis de Datos}{Python | 2025}
+    \begin{itemize}
+        \item Utilice Python y librerias como Requests, Beautifulsoup4, Streamlit, Plotly, Reportlab, entre otras para obtener datos de diferentes portales de noticias como TN, C5N, La Nacion y Clarin. Luego realice una limpieza de datos y su respectiva visualizacion en Streamlit y en un archivo PDF.
+        \item Objetivo: 
+        - Generar un programa que pueda obtener titulos de Internet para realizar un analisis politico, economico y social sobre cuanto habla cada medio de cada tema.
+        - Realizar una limpieza de datos provenientes de internet, visualizarlos en Streamlit y generar un archivo PDF con un texto cambiante segun los datos y con imagenes correspondientes a los graficos de Streamlit.
+        \item \href{https://github.com/JoacoLucen/scraping_web}{Proyecto en GitHub}
+    \end{itemize}
+\end{itemize}
+
+% --- Sección: Cursos ---
+%\section*{Cursos Certificados}
+%\begin{itemize}[leftmargin=*]
+    %\item \cvitem{ejemplo1}{Coursera | 2023}
+    %\item \cvitem{ejemplo2}{Udemy | 2024}
+%\end{itemize}
+
+\end{document}

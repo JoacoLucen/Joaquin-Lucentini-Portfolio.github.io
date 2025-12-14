@@ -1,0 +1,113 @@
+\documentclass[11pt, a4paper]{article}
+% --- Basic document configuration ---
+\usepackage[utf8]{inputenc}       % Support for UTF-8 characters (accents, ñ)
+\usepackage[T1]{fontenc}          % Better font rendering
+\usepackage[english]{babel}       % English language (hyphenation, automatic texts)
+\usepackage[margin=0.75in]{geometry} % Reduced margins to save space
+\usepackage{xcolor}               % Support for custom colors
+\usepackage{parskip}              % Spacing between paragraphs (no indentation)
+\usepackage{fontawesome}          % Icons (email, phone, etc.)
+\usepackage{hyperref}             % Clickable links (email, LinkedIn)
+\usepackage{enumitem}             % Advanced list control
+
+% --- Custom colors ---
+\definecolor{primary}{RGB}{0, 90, 156}    % UNLP Blue for titles
+\definecolor{secondary}{RGB}{100, 100, 100} % Gray for secondary text
+
+% --- Section style ---
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{6pt} % Spacing: before/after section
+
+% --- Custom commands ---
+\newcommand{\cvitem}[2]{\textbf{#1} \hfill \color{secondary}#2} % For dates/locations
+\newcommand{\iconitem}[2]{\makebox[1.5em]{\fa#1} #2} % Icon + text (e.g.: \faEnvelope)
+
+\begin{document}
+
+% --- Header ---
+\begin{center}
+    {\Huge \textbf{Lucentini Joaquín}}
+    \vspace{10pt} % Espacio vertical después del nombre
+
+    \begin{tabular}{l @{\hspace{1.5cm}} l}
+        % --- COLUMNA IZQUIERDA (Contacto) ---
+        \begin{tabular}[t]{@{}l@{}}
+            \faEnvelope{} joacolucen96@gmail.com \\
+            \faMapMarker{} La Plata, Buenos Aires \\
+        \end{tabular}
+        & % Separa las columnas
+        % --- COLUMNA DERECHA (Páginas) ---
+        \begin{tabular}[t]{@{}l@{}}
+            \faLinkedin{} \href{https://www.linkedin.com/in/joaquin-lucentini-a48066277/}{linkedin.com/Joaquin-Lucentini} \\
+            \faGithub{} \href{https://github.com/JoacoLucen}{github.com/Joaquin-Lucentini}\\
+            \faGlobe{} \href{https://joacolucen.github.io/Joaquin-Lucentini-Portfolio/}{My Web Portfolio}
+        \end{tabular}
+    \end{tabular}
+\end{center}
+
+% --- Section: Profile ---
+\section*{Profile}
+Student of \textbf{Data Science in Organizations} at the \textbf{National University of La Plata} (UNLP), currently in my \textbf{2nd year} of the degree (started in 2024). Interested in machine learning, visualization, analysis, and management of large volumes of data, teamwork, and self-improvement. Seeking opportunities to apply academic knowledge in real projects.
+
+% --- Section: Academic Background ---
+\section*{Academic Background}
+\begin{itemize}[leftmargin=*]
+    \item \cvitem{Data Science in Organizations}{UNLP | 2024--Present}
+    \begin{itemize}
+        \item AVG: 8.6/10.00
+    \end{itemize}
+    \item \cvitem{Bachelor in Natural Sciences}{Niño Jesus Institute | 2015--2020}
+\end{itemize}
+
+% --- Section: Work Experience ---
+%\section*{Work Experience}
+%\begin{itemize}[leftmargin=*]
+    %\item \cvitem{Administrative Assistant}{Saladillo Regional University Center | Feb 2023 -- Dec 2024}
+    %\item \cvitem{Administrative Assistant}{Pro-Feed Saladillo | Summer Job}
+    % Add more items as needed
+%\end{itemize}
+
+% --- Section: Technical Skills ---
+\section*{Skills}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Languages}: Python (intermediate)
+    \item \textbf{Tools}: Jupyter, Git, Excel, Pandas, Matplotlib, Streamlit, Google Sheets, Google Finance
+    \item \textbf{Languages}: English (basic)
+\end{itemize}
+
+% --- Section: Projects ---
+\section*{Projects}
+\begin{itemize}[leftmargin=*]
+    \item \cvitem{INDEC Data Cleaning and Visualization}{Python | 2025}
+    \begin{itemize}
+        \item EPH Data Cleaning and Visualization: Used Python for cleaning and visualizing data from the EPH (Permanent Household Survey) and displayed the results interactively using Streamlit.
+        \item Objective: To apply my knowledge and studies to practically and simply create demographic indicators using graphical objects.
+        \item \href{https://github.com/JoacoLucen/EPH-Insight-App}{Project on GitHub}
+        \item \href{https://eph-insight-app-joacolucentini.streamlit.app/}{Project on the web}
+    \end{itemize}
+    \item \cvitem{Personal Investment Spreadsheet}{Google Sheets | 2025}
+    \begin{itemize}
+        \item Using Google Sheets and Google Finance to create a portfolio tracker: Used tools like Google Sheets and Google Finance to create a template for tracking an investment portfolio.
+        \item Objective: To generate a template that helps individuals manage their financial assets. This includes obtaining past and present data, expenses, income, averages, and profitability, under a FIFO (First-In, First-Out) model to better control the portfolio.
+        \item \href{https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing}{Link to the Spreadsheet}
+    \end{itemize}
+    \item \cvitem{Screaping, Cleaning, Visualization and Data Analysis}{Python | 2025}
+    \begin{itemize}
+        \item Use Python and libraries such as Requests, Beautifulsoup4, Streamlit, Plotly, Reportlab, among others to obtain data from different news portals such as TN, C5N, La Nacion and Clarin. Then perform a data cleanup and its respective display in Streamlit and in a PDF file.
+        \item Objective: 
+        - Generate a program that can obtain Internet degrees to carry out a political, economic and social analysis of how much each medium talks about each topic.
+        - Clean data from the Internet, view it in Streamlit and generate a PDF file with changing text according to the data and with images corresponding to Streamlit graphics.
+        \item \href{https://github.com/JoacoLucen/scraping_web}{Project on GitHub}
+    \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+% --- Section: Certified Courses ---
+%\section*{Certified Courses}
+%\begin{itemize}[leftmargin=*]
+    %\item \cvitem{example1}{Coursera | 2023}
+    %\item \cvitem{example2}{Udemy | 2024}
+%\end{itemize}
+
+\end{document}
