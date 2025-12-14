@@ -1,114 +1,117 @@
 \documentclass[11pt, a4paper]{article}
-% --- Configuración básica del documento ---
-\usepackage[utf8]{inputenc}      % Soporte para caracteres UTF-8 (tildes, ñ)
-\usepackage[T1]{fontenc}         % Mejor renderizado de fuentes
-\usepackage[spanish]{babel}      % Idioma español (hyphenation, textos automáticos)
-\usepackage[margin=0.75in]{geometry} % Márgenes reducidos para aprovechar espacio
-\usepackage{xcolor}              % Soporte para colores personalizados
-\usepackage{parskip}             % Espaciado entre párrafos (no sangría)
-\usepackage{fontawesome}         % Iconos (email, teléfono, etc.)
-\usepackage{hyperref}            % Links clickeables (email, LinkedIn)
-\usepackage{enumitem}            % Control avanzado de listas
 
-% --- Colores personalizados ---
-\definecolor{primary}{RGB}{0, 90, 156}   % Azul UNLP para títulos
-\definecolor{secondary}{RGB}{100, 100, 100} % Gris para texto secundario
+% --- PAQUETES Y CONFIGURACIÓN ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=0.6in]{geometry} % Márgenes un poco más estrechos para aprovechar espacio
+\usepackage{xcolor}
+\usepackage{parskip}   % Elimina sangría y añade espacio entre párrafos
+\usepackage{fontawesome} % Iconos
+\usepackage{enumitem}  % Para personalizar listas
+\usepackage[hidelinks]{hyperref} % Links activos pero SIN cajas de colores
 
-% --- Estilo de secciones ---
+% --- FUENTE MODERNA (SANS-SERIF) ---
+% Esto le da el toque "Tech/Moderno" en lugar de "Tesis Académica"
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+
+% --- COLORES ---
+\definecolor{primary}{RGB}{0, 70, 140}    % Azul corporativo serio
+\definecolor{secondary}{RGB}{80, 80, 80}  % Gris oscuro para detalles
+\definecolor{accent}{RGB}{100, 100, 100}  % Gris medio para fechas/lugares
+
+% --- ESTILO DE SECCIONES ---
 \usepackage{titlesec}
-\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{12pt}{6pt} % Espaciado: antes/después de sección
+% Títulos en mayúsculas, color primario y línea debajo
+\titleformat{\section}{\large\bfseries\color{primary}\uppercase}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{14pt}{8pt} % Espaciado antes y después del título
 
-% --- Comandos personalizados ---
-\newcommand{\cvitem}[2]{\textbf{#1} \hfill \color{secondary}#2} % Para fechas/lugares
-\newcommand{\iconitem}[2]{\makebox[1.5em]{\fa#1} #2} % Ícono + texto (ej: \faEnvelope)
+% --- COMANDOS PERSONALIZADOS ---
+% Formato para items de lista con fecha a la derecha
+\newcommand{\projectHeader}[3]{
+    \textbf{#1} \hfill {\footnotesize \color{accent} #2 \textbar{} #3}
+}
+\newcommand{\schoolHeader}[2]{
+    \textbf{#1} \hfill {\footnotesize \color{accent} #2}
+}
 
+% Quitar número de página
+\pagestyle{empty}
+
+% --------------------------------------------------------------------------------------
+% INICIO DEL DOCUMENTO
+% --------------------------------------------------------------------------------------
 \begin{document}
 
-% --- Encabezado ---
+% --- ENCABEZADO ---
 \begin{center}
-    {\Huge \textbf{Lucentini Joaquín}}
-    \vspace{10pt} % Espacio vertical después del nombre
-
-    \begin{tabular}{l @{\hspace{1.5cm}} l}
-        % --- COLUMNA IZQUIERDA (Contacto) ---
-        \begin{tabular}[t]{@{}l@{}}
-            \faEnvelope{} joacolucen96@gmail.com \\
-            \faMapMarker{} La Plata, Buenos Aires \\
-        \end{tabular}
-        & % Separa las columnas
-        % --- COLUMNA DERECHA (Páginas) ---
-        \begin{tabular}[t]{@{}l@{}}
-            \faLinkedin{} \href{https://www.linkedin.com/in/joaquin-lucentini-a48066277/}{linkedin.com/Joaquin-Lucentini} \\
-            \faGithub{} \href{https://github.com/JoacoLucen}{github.com/Joaquin-Lucentini}\\
-            \faGlobe{} \href{https://joacolucen.github.io/Joaquin-Lucentini-Portfolio/}{Mi Portfolio Web}
-        \end{tabular}
-    \end{tabular}
+    {\Huge \textbf{Joaquín Lucentini}}\\[5pt]
+    {\Large \color{secondary} Ciencia de Datos en Organizaciones}\\[8pt]
+    
+    % Información de contacto en una sola línea limpia con separadores
+    {\small
+        \faMapMarker{} La Plata, BA \quad \textbullet \quad
+        \faEnvelope{} \href{mailto:joacolucen96@gmail.com}{joacolucen96@gmail.com} \quad \textbullet \quad
+        \faLinkedin{} \href{https://www.linkedin.com/in/joaquin-lucentini-a48066277/}{in/joaquin-lucentini}
+        \\[3pt] % Segunda línea
+        \faGithub{} \href{https://github.com/JoacoLucen}{github.com/JoacoLucen} \quad \textbullet \quad
+        \faGlobe{} \href{https://joacolucen.github.io/Joaquin-Lucentini-Portfolio.github.io/}{Portfolio Web}
+    }
 \end{center}
 
-
-% --- Sección: Perfil ---
+% --- PERFIL ---
 \section*{Perfil}
-Estudiante de \textbf{Ciencia de Datos en Organizaciones} en la \textbf{Universidad Nacional de La Plata} (UNLP), actualmente me encuentro cursando el \textbf{2do año} de la carrera (ingreso en 2024). Interesado en machine learning, visualización, análisis y manejo de grandes volumenes de datos, trabajo en equipo, superación personal. Busco oportunidades para aplicar conocimientos académicos en proyectos reales.
+Estudiante de \textbf{Ciencia de Datos en Organizaciones (UNLP)}. Apasionado por la intersección entre los datos y la toma de decisiones. Cuento con una sólida base matemática y experiencia académica en el ciclo completo del dato: desde la extracción y limpieza, hasta el almacenamiento (SQL/NoSQL) y visualización. Busco aplicar mis habilidades técnicas para optimizar los procesos, la toma de decisiones y generar impacto real en un equipo profesional.
 
-% --- Sección: Formación Académica ---
+% --- SKILLS (STACK TECNOLÓGICO) ---
+\section*{Stack Tecnológico}
+\begin{itemize}[leftmargin=*, noitemsep]
+    \item \textbf{Lenguajes:} SQL, NoSQL (Redis, Neo4j, MongoDB), Python (Librerias: Pandas, NumPy, Matplotlib, Plotly, BeautifulSoup4, Requests).
+    \item \textbf{Visualización:} Streamlit, ReportLab (Generación de PDF), PowerBI.
+    \item \textbf{Herramientas:} Git/GitHub, Jupyter Notebooks, VS Code.
+\end{itemize}
+
+% --- PROYECTOS ---
+\section*{Proyectos Destacados}
+
+\begin{itemize}[leftmargin=*]
+    
+    % --- PROYECTO 1 ---
+    \item \projectHeader{Monitor de Medios Argentinos: ETL y Visualización}{Python | Streamlit}{2025}
+    \begin{itemize}[label=\textbullet]
+        \item Desarrollo de una solución \textit{End-to-End} de \textbf{Web Scraping} para monitorear titulares de grandes medios (TN, C5N, La Nación, Clarín).
+        \item \textbf{Ingeniería de Datos:} Creación de pipelines automatizados para la limpieza de texto y detección de tópicos políticos/económicos.
+        \item \textbf{Producto:} Dashboard interactivo con generación automática de reportes PDF para análisis de coyuntura.
+        \item \href{https://github.com/JoacoLucen/scraping_web}{\faGithub{} \textit{\underline{Ver Código Fuente}}}
+    \end{itemize}
+    \vspace{4pt} % Pequeño espacio entre proyectos
+
+    % --- PROYECTO 2 ---
+    \item \projectHeader{Dashboard Analítico de la EPH (INDEC)}{Python | Pandas}{2025}
+    \begin{itemize}[label=\textbullet]
+        \item Procesamiento y transformación de microdatos de la Encuesta Permanente de Hogares (EPH).
+        \item Diseño de visualizaciones interactivas para democratizar el acceso a indicadores socioeconómicos complejos.
+        \item Despliegue de la aplicación en la nube accesible para todo público.
+        \item \href{https://eph-insight-app-joacolucentini.streamlit.app/}{\faGlobe{} \textit{\underline{Ver App Online}}} \textbar{} \href{https://github.com/JoacoLucen/EPH-Insight-App}{\faGithub{} \textit{\underline{Ver Código}}}
+    \end{itemize}
+    \vspace{4pt}
+
+    % --- PROYECTO 3 ---
+    \item \projectHeader{Sistema de Gestión de Inversiones}{Google Sheets | API}{2025}
+    \begin{itemize}[label=\textbullet]
+        \item Desarrollo de una herramienta automatizada para el *tracking* de activos financieros en tiempo real.
+        \item Implementación lógica del método \textbf{FIFO (First-In, First-Out)} para el cálculo exacto de rentabilidad fiscal y real.
+        \item Integración con Google Finance para la actualización automática de cotizaciones y métricas de riesgo.
+        \item \href{https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing}{\faTable{} \textit{\underline{Ver Planilla}}}
+    \end{itemize}
+
+\end{itemize}
+
+% --- FORMACIÓN ACADÉMICA ---
 \section*{Formación Académica}
 \begin{itemize}[leftmargin=*]
-    \item \cvitem{Ciencia de Datos en Organizaciones}{UNLP | 2024--Presente}
-    \begin{itemize}
-        \item Promedio: 8.6/10.00
-    \end{itemize}
-    \item \cvitem{Bachiller en Ciencias Naturales}{Instituto Niño Jesus | 2015--2020}
+    \item \schoolHeader{Licenciatura en Ciencia de Datos en Organizaciones}{UNLP | 2024 -- Presente}
 \end{itemize}
-
-% --- Sección: Experiencia Laboral ---
-%\section*{Experiencia Laboral}
-%\begin{itemize}[leftmargin=*]
-    %\item \cvitem{Auxiliar administrativo}{Centro Universitario Regional Saladillo | Feb 2023 -- Dic 2024}
-    %\item \cvitem{Auxiliar administrativo}{Pro-Feed Saladillo | Trabajo de verano}
-    % Añade más items según necesites
-%\end{itemize}
-
-% --- Sección: Habilidades Técnicas ---
-\section*{Skills}
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Lenguajes}: Python (intermedio)
-    \item \textbf{Herramientas}: Jupyter, Git, Excel, Pandas, Matplotlib, Streamlit, Google Sheets, Google Finance
-    \item \textbf{Idiomas}: Inglés (basico)
-\end{itemize}
-
-% --- Sección: Proyectos ---
-\section*{Proyectos}
-\begin{itemize}[leftmargin=*]
-    \item \cvitem{Limpieza y visualización de datos del INDEC}{Python | 2025}
-    \begin{itemize}
-        \item Utilizacion de la EPH para Limpieza y Visualizacion de Datos: Utilice Python para la limpieza y visualizacion de la EPH (Encuesta Permanente de Hogares) y mostre los resultados, de una forma interactiva, usando Streamlit.
-        \item Objetivo: Aplicar mis conocimientos y estudios para crear de forma practica y simple indicadores demograficos, mediante objetos graficos.
-        \item \href{https://github.com/JoacoLucen/EPH-Insight-App}{Proyecto en GitHub}
-        \item \href{https://eph-insight-app-joacolucentini.streamlit.app/}{Proyecto en la web}
-    \end{itemize}
-    \item \cvitem{Planilla de Inversiones Personales}{Google Sheets | 2025}
-    \begin{itemize}
-        \item Utilizacion de Google Sheets y Google Finance para crear un portfolio: Use herramientas como Google Sheets y Google Finance para crear una plantilla que permitiera tener un control de un portfolio de inversiones.
-        \item Objetivo: Generar una plantilla que ayude a las personas a controlar sus activos financieros. Obteniendo datos pasados y presentes, gastos, ingresos, promedios, y rentabilidad, bajo un modelo FIFO (primero entrado - primero salido) que ayude a controlar de mejor forma el portfolio.
-        \item \href{https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing}{Link a la Planilla}
-    \end{itemize}
-    \cvitem { }
-    \item \cvitem{Escreapeo, Limpieza, Visualizacion y Analisis de Datos}{Python | 2025}
-    \begin{itemize}
-        \item Utilice Python y librerias como Requests, Beautifulsoup4, Streamlit, Plotly, Reportlab, entre otras para obtener datos de diferentes portales de noticias como TN, C5N, La Nacion y Clarin. Luego realice una limpieza de datos y su respectiva visualizacion en Streamlit y en un archivo PDF.
-        \item Objetivo: 
-        - Generar un programa que pueda obtener titulos de Internet para realizar un analisis politico, economico y social sobre cuanto habla cada medio de cada tema.
-        - Realizar una limpieza de datos provenientes de internet, visualizarlos en Streamlit y generar un archivo PDF con un texto cambiante segun los datos y con imagenes correspondientes a los graficos de Streamlit.
-        \item \href{https://github.com/JoacoLucen/scraping_web}{Proyecto en GitHub}
-    \end{itemize}
-\end{itemize}
-
-% --- Sección: Cursos ---
-%\section*{Cursos Certificados}
-%\begin{itemize}[leftmargin=*]
-    %\item \cvitem{ejemplo1}{Coursera | 2023}
-    %\item \cvitem{ejemplo2}{Udemy | 2024}
-%\end{itemize}
 
 \end{document}
