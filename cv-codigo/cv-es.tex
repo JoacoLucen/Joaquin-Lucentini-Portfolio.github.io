@@ -4,31 +4,28 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-\usepackage[margin=0.6in]{geometry} % Márgenes un poco más estrechos para aprovechar espacio
+\usepackage[margin=0.5in]{geometry}
 \usepackage{xcolor}
-\usepackage{parskip}   % Elimina sangría y añade espacio entre párrafos
-\usepackage{fontawesome} % Iconos
-\usepackage{enumitem}  % Para personalizar listas
-\usepackage[hidelinks]{hyperref} % Links activos pero SIN cajas de colores
+\usepackage{parskip}
+\usepackage{fontawesome}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
 
-% --- FUENTE MODERNA (SANS-SERIF) ---
-% Esto le da el toque "Tech/Moderno" en lugar de "Tesis Académica"
+% --- FUENTE MODERNA ---
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{helvet}
 
 % --- COLORES ---
-\definecolor{primary}{RGB}{0, 70, 140}    % Azul corporativo serio
-\definecolor{secondary}{RGB}{80, 80, 80}  % Gris oscuro para detalles
-\definecolor{accent}{RGB}{100, 100, 100}  % Gris medio para fechas/lugares
+\definecolor{primary}{RGB}{0, 70, 140}
+\definecolor{secondary}{RGB}{80, 80, 80}
+\definecolor{accent}{RGB}{100, 100, 100}
 
 % --- ESTILO DE SECCIONES ---
 \usepackage{titlesec}
-% Títulos en mayúsculas, color primario y línea debajo
 \titleformat{\section}{\large\bfseries\color{primary}\uppercase}{}{0em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{14pt}{8pt} % Espaciado antes y después del título
+\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 % --- COMANDOS PERSONALIZADOS ---
-% Formato para items de lista con fecha a la derecha
 \newcommand{\projectHeader}[3]{
     \textbf{#1} \hfill {\footnotesize \color{accent} #2 \textbar{} #3}
 }
@@ -36,59 +33,79 @@
     \textbf{#1} \hfill {\footnotesize \color{accent} #2}
 }
 
-% Quitar número de página
 \pagestyle{empty}
 
-% --------------------------------------------------------------------------------------
-% INICIO DEL DOCUMENTO
-% --------------------------------------------------------------------------------------
 \begin{document}
 
 % --- ENCABEZADO ---
 \begin{center}
     {\Huge \textbf{Joaquín Lucentini}}\\[5pt]
-    {\Large \color{secondary} Ciencia de Datos en Organizaciones}\\[8pt]
+    {\Large \color{secondary} Ciencia de Datos | Análisis de Datos}\\[8pt]
     
-    % Información de contacto en una sola línea limpia con separadores
     {\small
         \faMapMarker{} La Plata, BA \quad \textbullet \quad
         \faEnvelope{} \href{mailto:joacolucen96@gmail.com}{joacolucen96@gmail.com} \quad \textbullet \quad
         \faLinkedin{} \href{https://www.linkedin.com/in/joaquin-lucentini-a48066277/}{in/joaquin-lucentini}
-        \\[3pt] % Segunda línea
+        \\[3pt]
         \faGithub{} \href{https://github.com/JoacoLucen}{github.com/JoacoLucen} \quad \textbullet \quad
         \faGlobe{} \href{https://joacolucen.github.io/Joaquin-Lucentini-Portfolio.github.io/}{Portfolio Web}
     }
 \end{center}
 
 % --- PERFIL ---
-\section*{Perfil}
-Estudiante de \textbf{Ciencia de Datos en Organizaciones (UNLP)}. Apasionado por la intersección entre los datos y la toma de decisiones. Cuento con una sólida base matemática y experiencia académica en el ciclo completo del dato: desde la extracción y limpieza, hasta el almacenamiento (SQL/NoSQL) y visualización. Busco aplicar mis habilidades técnicas para optimizar los procesos, la toma de decisiones y generar impacto real en un equipo profesional.
+\section*{Perfil Profesional}
+Estudiante avanzado de \textbf{Ciencia de Datos en Organizaciones (UNLP)}. Perfil analítico con base en \textbf{Probabilidad, Estadística Inferencial y Optimización de Procesos}. Con proyectos en el ciclo de vida del dato: desde la extracción, cómo el Web Scraping, y gestión en entornos SQL/NoSQL, hasta la visualización de los mismos. Enfocado en transformar datos complejos en soluciones de negocio operativas. Busco oportunidades que me permitan aplicar metodologías analíticas y generar impacto real en la eficiencia organizacional.
 
 % --- SKILLS (STACK TECNOLÓGICO) ---
-\section*{Stack Tecnológico}
+\section*{Stack Tecnológico y Aptitudes}
 \begin{itemize}[leftmargin=*, noitemsep]
-    \item \textbf{Lenguajes:} SQL, NoSQL (Redis, Neo4j, MongoDB), Python (Librerias: Pandas, NumPy, Matplotlib, Plotly, BeautifulSoup4, Requests).
-    \item \textbf{Visualización:} Streamlit, ReportLab (Generación de PDF), PowerBI.
-    \item \textbf{Herramientas:} Git/GitHub, Jupyter Notebooks, VS Code.
+    \item \textbf{Análisis y Datos:} Python, SQL, NoSQL (MongoDB, Redis, Neo4j).
+    \item \textbf{Manipulación de Archivos:} Procesamiento eficiente de formatos CSV, Excel, JSON y archivos planos.
+    \item \textbf{Data Wrangling:} Limpieza de datos con Pandas y NumPy (manejo de valores nulos, normalización, tipado de datos).
+    \item \textbf{Visualización y BI:} Power BI (DAX, Modelado), Streamlit, Plotly, ReportLab (PDF).
+    \item \textbf{Estadística Aplicada:} Regresión (Simple), Test de Hipótesis, Series de Tiempo, Análisis Combinatorio.
+    \item \textbf{Idioma:} Inglés (Nivel Técnico - Comprensión lectora y escrita).
 \end{itemize}
 
-% --- PROYECTOS ---
-\section*{Proyectos Destacados}
+% --- PROYECTOS DESTACADOS ---
+\section*{Experiencia en Proyectos}
 
 \begin{itemize}[leftmargin=*]
-    
-    % --- PROYECTO 1 ---
-    \item \projectHeader{Monitor de Medios Argentinos: ETL y Visualización}{Python | Streamlit}{2025}
-    \begin{itemize}[label=\textbullet]
-        \item Desarrollo de una solución \textit{End-to-End} de \textbf{Web Scraping} para monitorear titulares de grandes medios (TN, C5N, La Nación, Clarín).
-        \item \textbf{Ingeniería de Datos:} Creación de pipelines automatizados para la limpieza de texto y detección de tópicos políticos/económicos.
-        \item \textbf{Producto:} Dashboard interactivo con generación automática de reportes PDF para análisis de coyuntura.
-        \item \href{https://github.com/JoacoLucen/scraping_web}{\faGithub{} \textit{\underline{Ver Código Fuente}}}
-    \end{itemize}
-    \vspace{4pt} % Pequeño espacio entre proyectos
 
-    % --- PROYECTO 2 ---
-    \item \projectHeader{Dashboard Analítico de la EPH (INDEC)}{Python | Pandas}{2025}
+    % --- PROYECTO POWER BI ---
+    \item \projectHeader{Business Intelligence Dashboard's}{Power BI | ETL}{2026}
+    \vspace{3pt}
+    \begin{itemize}[label=\textbullet]
+        \item \textbf{Dashboard de Análisis Comercial - BMW}
+        \begin{itemize}[label=--] % Detalles técnicos
+            \item Desarrollo de un tablero integral para el seguimiento de ventas globales (2010-2024), ingresos e indicadores clave (KPIs) de mercado.
+            \item Implementación de segmentación dinámica por región, tipo de combustible y transmisión mediante funciones DAX.
+            \item Visualización avanzada con mapas interactivos y análisis detallado de modelos para identificar tendencias de consumo y rentabilidad.
+            \item En mi Portfolio Web se puede encontrar imágenes y videos de este proyecto, y de los demas.
+            \item \href{https://github.com/JoacoLucen/BMW-Sales-Analysis-Power-BI}{\faGithub{} \textit{Ver proyecto en GitHub}}
+        \end{itemize}
+    \end{itemize}
+    \vspace{4pt}
+
+    % --- NUEVO PROYECTO: HOTEL AMAU ---
+    \item \projectHeader{Consultoría Operativa y Mejora de Procesos}{Hotel Escuela AMAU | Proyecto UNLP}{2025}
+    \begin{itemize}[label=\textbullet]
+        \item Análisis integral del entorno y diagnóstico estratégico mediante auditoría de procesos internos.
+        \item Identificación de ineficiencias operativas y propuesta de reingeniería tecnológica (\textit{Smart-Clean}) para optimización de tiempos.
+        \item Definición de KPIs de calidad y trazabilidad para la toma de decisiones basada en métricas reales.
+    \item \href{https://drive.google.com/file/d/1wdzdxoutsG3LJ89Nxbsgm8bPV1dETKXE/view?usp=sharing}{\faFilePdfO{} \textit{\underline{Informe Completo}}}
+    \end{itemize}
+    \vspace{4pt}
+
+    % --- PROYECTO: MONITOR DE MEDIOS ---
+    \item \projectHeader{Monitor de Medios: ETL y Web Scraping}{Python | Automation}{2025}
+    \begin{itemize}[label=\textbullet]
+        \item Pipeline \textit{End-to-End} para extracción, transformacion y carga de datos en tiempo real de portales de noticias argentinos.
+        \item Procesamiento de lenguaje natural básico para detección de tópicos y generación de reportes PDF automáticos.
+        \item \href{https://github.com/JoacoLucen/scraping_web}{\faGithub{} \textit{Código Fuente}}
+    \end{itemize}
+
+    \item \projectHeader{Dashboard Analítico de la EPH (INDEC)}{Python}{2025}
     \begin{itemize}[label=\textbullet]
         \item Procesamiento y transformación de microdatos de la Encuesta Permanente de Hogares (EPH).
         \item Diseño de visualizaciones interactivas para democratizar el acceso a indicadores socioeconómicos complejos.
@@ -97,21 +114,25 @@ Estudiante de \textbf{Ciencia de Datos en Organizaciones (UNLP)}. Apasionado por
     \end{itemize}
     \vspace{4pt}
 
-    % --- PROYECTO 3 ---
-    \item \projectHeader{Sistema de Gestión de Inversiones}{Google Sheets | API}{2025}
+        \item \projectHeader{Cartera de Inversiones}{Google Sheets | API}{2025}
     \begin{itemize}[label=\textbullet]
         \item Desarrollo de una herramienta automatizada para el *tracking* de activos financieros en tiempo real.
         \item Implementación lógica del método \textbf{FIFO (First-In, First-Out)} para el cálculo exacto de rentabilidad fiscal y real.
         \item Integración con Google Finance para la actualización automática de cotizaciones y métricas de riesgo.
         \item \href{https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing}{\faTable{} \textit{\underline{Ver Planilla}}}
     \end{itemize}
-
+    
 \end{itemize}
 
 % --- FORMACIÓN ACADÉMICA ---
 \section*{Formación Académica}
 \begin{itemize}[leftmargin=*]
-    \item \schoolHeader{Ciencia de Datos en Organizaciones}{UNLP | 2024 -- Presente}
+    \item \schoolHeader{Ciencia de Datos en Organizaciones}{Universidad Nacional de La Plata | 2024 -- Presente}
+    \begin{itemize}[label=\tiny\faChevronRight]
+        \item \textbf{Matemática y Estadística:} Cálculo multivariable, Álgebra Lineal, Inferencia Estadística, Mínimos Cuadrados y Pronósticos.
+        \item \textbf{Sistemas:} Modelado de Bases de Datos Relacionales y No Relacionales, Estructuras de Datos y Algoritmos.
+        \item \textbf{Negocios:} Contabilidad, Economía, Procesos de Negocios y Gestión de Organizaciones.
+    \end{itemize}
 \end{itemize}
 
 \end{document}

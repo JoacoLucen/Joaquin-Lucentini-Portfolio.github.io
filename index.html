@@ -398,24 +398,40 @@
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
       <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/matplotlib/matplotlib-plain.svg" alt="Matplotlib" />
+      <img src="https://raw.githubusercontent.com/microsoft/PowerBI-Icons/24f1db8bdfab951c25db591772140d2f4ec5bc1e/SVG/Power-BI.svg" alt="Power BI" />
+      <img src="https://raw.githubusercontent.com/mongodb-js/leaf/11ca83e5b383fe36ac064ffa4d5182e066ab7857/mongodb-leaf.svg" alt="MongoDB" />
+      <img src="https://raw.githubusercontent.com/CircleCI-Public/cimg-redis/4da26916114e4b4cc042371236424c4307882ef1/img/circle-redis.svg" alt="Redis" />
     </div>
   </section>
 
   <section class="section">
     <h2>Proyectos</h2>
+    <!-- FILTROS -->
+    <div class="filtros-proyectos" style="text-align:center; margin-bottom:2rem;">
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('all')">Todos</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('python')">Python</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('data')">Data</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('google sheets')">Google Sheets</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('powerbi')">Power BI</button>
+    </div>
     <div class="proyectos-grid">
-      <div class="proyecto-card" onclick="abrirProyecto('proyecto1')">
+      <div class="proyecto-card" data-category="python data" onclick="abrirProyecto('proyecto1')">
         <img src="utils/python-logo.png" alt="Proyecto 1">
         <p>EPH con Python y Streamlit</p>
       </div>
-      <div class="proyecto-card" onclick="abrirProyecto('proyecto2')">
+      <div class="proyecto-card" data-category="google sheets" onclick="abrirProyecto('proyecto2')">
         <img src="utils/google-sheets-logo.png" alt="Proyecto 2">
         <p>Cartera de inversiones con Google Sheets</p>
       </div>
-      <div class="proyecto-card" onclick="abrirProyecto('proyecto3')">
+      <div class="proyecto-card" data-category="python data" onclick="abrirProyecto('proyecto3')">
         <img src="utils/logo-python-sql.png" alt="Proyecto 3">
         <p>Web Scraping y Analisis de Datos</p>
       </div>
+      <div class="proyecto-card" data-category="powerbi data" onclick="abrirProyecto('proyecto4')">
+        <img src="utils/logo-powerbi.png" alt="Proyecto 4">
+        <p>Dashboard de Análisis Comercial - BMW</p>
+      </div>
+
     </div>
   </section>
 
@@ -479,6 +495,41 @@
     </div>
   </div>
 
+  <div id="proyecto4" class="modal" onclick="cerrarClickFuera(event, 'proyecto4')">
+    <span class="close" onclick="cerrarProyecto('proyecto4')">&times;</span>
+
+    <p>
+      <strong>Dashboard de Análisis Comercial - BMW:</strong><br><br>
+      Creé un dashboard interactivo utilizando Power BI para analizar datos de ventas de BMW por año, modelos, tipo de combustible, region, etc. 
+      El mismo incluye tarjetas, graficos, ToolTip´s Personalizados, Imagenes por filtro (donde cree archivos con cada una de las imagenes y las incorporé mediante medidas DAX) y otras herramientas visuales que me permitieron realizar el proyecto.<br><br>
+      Por ultimo quiero destacar que se realizó a lo largo del proyecto todo el ciclo ETL (dentro de Power BI) ,y la creación estética y visual del dashboard. 
+    </p>
+
+    <a href="https://github.com/JoacoLucen/BMW-Sales-Analysis-Power-BI" target="_blank" class="proyecto-link">
+      Ver archivos del proyecto en GitHub
+    </a>
+
+    <div class="modal-content">
+      <!-- VIDEO -->
+      <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        width="80%" 
+        style="margin-top:2rem; border-radius:12px;">
+        
+        <source src="utils/Grabación Proyecto BI 1.mp4" type="video/mp4">
+      </video>
+
+      <!-- IMÁGENES -->
+      <img src="utils/proyecto1.1-PowerBI.png">
+      <img src="utils/proyecto1.2-PowerBI.png">
+
+    </div>
+  </div>
+
+
   <script>
     // Lógica del Tema Oscuro / Claro
     const body = document.body;
@@ -522,6 +573,24 @@
         cerrarProyecto(id);
       }
     }
+
+    // FILTRO DE PROYECTOS
+    function filtrarProyectos(categoria) {
+      const proyectos = document.querySelectorAll('.proyecto-card');
+
+      proyectos.forEach(proyecto => {
+        const categorias = proyecto.getAttribute('data-category');
+
+        if (categoria === 'all' || categorias.includes(categoria)) {
+          proyecto.style.display = "block";
+        } else {
+          proyecto.style.display = "none";
+        }
+      });
+    }
+
   </script>
 </body>
 </html>
+
+

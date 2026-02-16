@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Joaquin Lucentini</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* --- DEFINICIÓN DE COLORES (Variables CSS) --- */
+    :root {
+      /* Tema CLARO (Default) - Minimalista y Elegante */
+      --bg-body: #fafafa;           /* Gris muy claro, casi blanco */
+      --bg-header: #ffffff;         /* Blanco puro */
+      --bg-card: #ffffff;           /* Blanco puro para tarjetas */
+      --bg-modal: rgba(255, 255, 255, 0.95);
+      --bg-modal-text: #f0f0f0;
+      
+      --text-main: #333333;         /* Gris oscuro para texto */
+      --text-muted: #555555;
+      
+      --border-color: #e0e0e0;      /* Bordes sutiles */
+      --accent-color: #333333;      /* Acentos en gris oscuro (minimalista) */
+      --hover-color: #000000;       /* Negro al pasar mouse */
+      --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave */
+      --icon-filter: none;          /* Iconos originales */
+    }
+
+    [data-theme="dark"] {
+      /* Tema OSCURO - Basado en tu diseño original */
+      --bg-body: #0d0d0d;
+      --bg-header: #1a1a1a;
+      --bg-card: #1f1f1f;
+      --bg-modal: rgba(0, 0, 0, 0.95);
+      --bg-modal-text: #1f1f1f;
+
+      --text-main: #eaeaea;
+      --text-muted: #cccccc;
+
+      --border-color: #333333;
+      --accent-color: #eaeaea;
+      --hover-color: #00ff99;       /* Acento neón original */
+      --shadow-card: 0px 4px 20px rgba(0, 0, 0, 0.6);
+      --icon-filter: brightness(0) invert(1); /* Invertir iconos negros a blancos */
+    }
+
+    /* --- ESTILOS GENERALES --- */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Courier New", monospace; /* Mantenemos tu fuente */
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text-main);
+      transition: color 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+    }
+    
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 3rem; margin-bottom: 1.5rem; }
+
+    /* Botón de Tema */
+    .theme-toggle-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background-color: var(--border-color);
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 3rem 2rem;
+    }
+
+    /* --- CAJA PRESENTACIÓN --- */
+    .presentacion-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem 3rem;
+      width: 90%;
+      max-width: 1500px;
+      margin: auto;
+      box-shadow: var(--shadow-card);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .presentacion-box h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .barra-separacion {
+      width: 2px;
+      background: var(--border-color);
+      margin: 0 1rem; 
+    }
+
+    .sobre-mi {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap; /* Para móviles */
+    }
+
+    .perfil {
+      flex: 1;
+      min-width: 250px;
+      text-align: center;
+    }
+
+    .perfil img {
+      width: 300px; 
+      height: 300px;
+      border-radius: 20%;
+      object-fit: cover;
+      border: 3px solid var(--border-color);
+      transition: border-color 0.3s;
+    }
+
+    .perfil a {
+      display: inline-block;
+      margin: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .perfil a:hover {
+      color: var(--hover-color);
+      transform: scale(1.1);
+    }
+
+    .perfil p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .descripcion {
+      flex: 2;
+      min-width: 300px;
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Botón CV */
+    .cv-container {
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    .cv-link {
+      display: inline-block;
+      background: var(--text-main); /* Invertido para contraste */
+      color: var(--bg-body);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-card);
+    }
+
+    .cv-link:hover {
+      background: var(--hover-color);
+      color: #000; /* Texto negro en hover si es neón */
+      transform: scale(1.05);
+    }
+    
+    /* Ajuste para tema claro: si el hover es negro, texto blanco */
+    [data-theme="light"] .cv-link:hover {
+        color: #fff;
+    }
+
+
+    /* --- HERRAMIENTAS --- */
+    .herramientas-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    /* En tema claro usamos los iconos originales, en oscuro invertimos si son negros puros */
+    .herramientas-icons img {
+      width: 70px;
+      height: 70px;
+      transition: transform 0.3s;
+      /* Truco: Algunos iconos de devicon son negros, otros color. 
+         Si quieres forzar blanco en oscuro usa filtro, sino déjalos natural */
+    }
+    
+    /* Aplicar filtro solo en modo oscuro para iconos negros */
+    [data-theme="dark"] .herramientas-icons img {
+        /* Opcional: si quieres que todos se vean blancos en dark mode */
+        /* filter: brightness(0) invert(1); */ 
+    }
+
+    .herramientas-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    /* --- PROYECTOS --- */
+    .proyectos-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .proyecto-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1rem;
+      width: 280px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .proyecto-card:hover {
+      transform: scale(1.05);
+      border-color: var(--text-main);
+    }
+
+    .proyecto-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .proyecto-card p {
+      font-weight: bold;
+    }
+
+    /* --- MODAL --- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--bg-modal); /* Fondo semitransparente según tema */
+      overflow: auto;
+      padding: 2rem;
+      text-align: center;
+      backdrop-filter: blur(5px); /* Efecto borroso elegante */
+    }
+
+    .modal-content img {
+      max-width: 90%;
+      margin: 1rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .modal p {
+      margin: 2rem auto;
+      padding: 1.5rem 3rem;
+      background: var(--bg-modal-text);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      max-width: 1000px;
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-card);
+      color: var(--text-main);
+    }
+
+    .modal-content {
+      margin-top: 2rem;
+    }
+
+    .modal .close {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 3rem;
+      cursor: pointer;
+      color: var(--text-main);
+      transition: transform 0.2s;
+    }
+
+    .modal .close:hover {
+      transform: scale(1.2);
+      color: #ff4d4d;
+    }
+
+    .proyecto-link {
+      display: inline-block;
+      background: var(--text-main);
+      color: var(--bg-body);
+      padding: 0.8rem 1.5rem;
+      margin-top: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .proyecto-link:hover {
+      background: var(--hover-color);
+      color: #000;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body data-theme="dark"> <header>
+    <h1>Lucentini Joaquin | Portfolio</h1>
+    
+    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">
+      <i class="fas fa-sun"></i> Tema Claro
+    </button>
+  </header>
+
+  <section class="section">
+    <div class="presentacion-box">
+      <h2>Presentación</h2>
+      
+      <div class="sobre-mi">
+        <div class="perfil">
+          <img src="utils/perfil.jpg" alt="Foto de perfil">
+          <div>
+            <a href="https://github.com/JoacoLucen" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/joaquin-lucentini-a48066277/" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+          <p>📩 joacolucen96@gmail.com</p>
+        </div>
+
+        <div class="barra-separacion"></div>
+
+        <div class="descripcion">
+          <p>
+            👋Hola! Soy estudiante de Ciencia de Datos en Organizaciones en la Universidad Nacional de La Plata (UNLP).<br><br>
+            <em>Apasionado por transformar datos complejos en soluciones estratégicas. Cuento con una sólida base matemática y 
+            experiencia académica en el ciclo de vida del dato: desde la extracción y limpieza (ETL) hasta el modelado y visualización. 
+            Busco aplicar mis habilidades en Python, SQL y NoSQL para generar valor real y continuar mi desarrollo profesional en un equipo dinámico. <br><br>
+            Por ultimo quisiera aclarar que disfruto de los desafíos que me permiten crecer profesional y personalmente.</em><br><br>
+          </p>
+
+          <div class="cv-container">
+            <a class="cv-link" href="utils/cv-es.pdf" target="_blank">📄 Descargar CV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Herramientas</h2>
+    <div class="herramientas-icons">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/streamlit/streamlit-original.svg" alt="Streamlit" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/azuresqldatabase/azuresqldatabase-plain.svg" alt="SQL" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+      <img src="https://raw.githubusercontent.com/devicons/devicon/54cfe13ac10eaa1ef817a343ab0a9437eb3c2e08/icons/matplotlib/matplotlib-plain.svg" alt="Matplotlib" />
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Proyectos</h2>
+    <div class="proyectos-grid">
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto1')">
+        <img src="utils/python-logo.png" alt="Proyecto 1">
+        <p>EPH con Python y Streamlit</p>
+      </div>
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto2')">
+        <img src="utils/google-sheets-logo.png" alt="Proyecto 2">
+        <p>Cartera de inversiones con Google Sheets</p>
+      </div>
+      <div class="proyecto-card" onclick="abrirProyecto('proyecto3')">
+        <img src="utils/logo-python-sql.png" alt="Proyecto 3">
+        <p>Web Scraping y Analisis de Datos</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="proyecto1" class="modal" onclick="cerrarClickFuera(event, 'proyecto1')">
+    <span class="close" onclick="cerrarProyecto('proyecto1')">&times;</span>
+    <p>
+      <strong>Utilización de la EPH para Limpieza y Visualización de Datos:</strong><br><br>
+      Utilicé Python para la limpieza y visualización de la EPH (Encuesta Permanente de Hogares) y mostré los resultados de una forma interactiva usando Streamlit.<br><br>
+      <em>Objetivo:</em> Aplicar mis conocimientos y estudios para crear de forma práctica y simple indicadores demográficos mediante objetos gráficos.
+    </p>
+
+    <a href="https://github.com/JoacoLucen/EPH-Insight-App" target="_blank" class="proyecto-link">
+      Ver Proyecto en GitHub
+    </a>
+
+    <div class="modal-content">
+      <img src="utils/proyecto1-python.png">
+      <img src="utils/proyecto1.1-python.png">
+      <img src="utils/proyecto1.2-python.png">
+      <img src="utils/proyecto1.3-python.png">
+      <img src="utils/proyecto1.4-python.png">
+    </div>
+  </div>
+
+  <div id="proyecto2" class="modal" onclick="cerrarClickFuera(event, 'proyecto2')">
+    <span class="close" onclick="cerrarProyecto('proyecto2')">&times;</span>
+    <p>
+      <strong>Utilización de Google Sheets y Google Finance para crear un portfolio:</strong><br><br>
+      Usé herramientas como Google Sheets y Google Finance para crear una plantilla que permitiera tener un control de un portfolio de inversiones.<br><br>
+      <em>Objetivo:</em> Generar una plantilla que ayude a las personas a controlar sus activos financieros, obteniendo datos pasados y presentes, gastos, ingresos, promedios y rentabilidad, bajo un modelo FIFO (primero entrado - primero salido).
+    </p>
+
+    <a href="https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing" target="_blank" class="proyecto-link">
+      Ver Proyecto en Google Sheets
+    </a>
+    <div class="modal-content">
+      <img src="utils/proyecto1-sheets.png">
+      <img src="utils/proyecto1.1-sheets.png">
+      <img src="utils/proyecto1.2-sheets.png">
+      <img src="utils/proyecto1.3-sheets.png">
+      <img src="utils/proyecto1.4-sheets.png">
+    </div>
+  </div>
+
+  <div id="proyecto3" class="modal" onclick="cerrarClickFuera(event, 'proyecto3')">
+    <span class="close" onclick="cerrarProyecto('proyecto3')">&times;</span>
+    <p>
+      <strong>Web Scraping y Análisis de Datos:</strong><br><br>
+      Creé un script en Python que permite realizar web scraping de títulos en diferentes páginas web de medios de noticias en Argentina y los almacena en SQLite. Luego, utilizando Streamlit, se ejecuta una limpieza de los datos y se representan gráficamente.<br><br>
+      Agregué una funcionalidad "automatizada" para poder descargar un archivo .pdf con los datos generados y su respectivo Análisis.
+    </p>
+
+    <a href="https://github.com/JoacoLucen/scraping_web" target="_blank" class="proyecto-link">
+      Ver Proyecto en GitHub
+    </a>
+    <div class="modal-content">
+      <img src="utils/proyecto3-python.png">
+      <img src="utils/proyecto3.1-python.png">
+      <img src="utils/proyecto3.2-python.png">
+      <img src="utils/proyecto3.3-python.png">
+    </div>
+  </div>
+
+  <script>
+    // Lógica del Tema Oscuro / Claro
+    const body = document.body;
+    const themeBtn = document.getElementById('themeBtn');
+    
+    // Función para actualizar el texto e icono del botón
+    function updateButton(theme) {
+      if(theme === 'dark') {
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i> Tema Claro';
+      } else {
+        themeBtn.innerHTML = '<i class="fas fa-moon"></i> Tema Oscuro';
+      }
+    }
+
+    // Inicializar botón según el estado actual
+    updateButton(body.getAttribute('data-theme'));
+
+    function toggleTheme() {
+      const currentTheme = body.getAttribute('data-theme');
+      
+      if (currentTheme === 'dark') {
+        body.setAttribute('data-theme', 'light');
+        updateButton('light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        updateButton('dark');
+      }
+    }
+
+    // Lógica de Modales (Simplificada ya que no hay idioma)
+    function abrirProyecto(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    
+    function cerrarProyecto(id) {
+      document.getElementById(id).style.display = "none";
+    }
+    
+    function cerrarClickFuera(event, id) {
+      if (event.target.classList.contains("modal")) {
+        cerrarProyecto(id);
+      }
+    }
+  </script>
+</body>
+</html>
