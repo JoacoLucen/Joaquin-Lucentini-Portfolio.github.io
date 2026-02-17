@@ -412,7 +412,8 @@
       <button class="theme-toggle-btn" onclick="filtrarProyectos('python')">Python</button>
       <button class="theme-toggle-btn" onclick="filtrarProyectos('data')">Data</button>
       <button class="theme-toggle-btn" onclick="filtrarProyectos('google sheets')">Google Sheets</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('powerbi')">Power BI</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('sql')">SQL</button>
+      <button class="theme-toggle-btn" onclick="filtrarProyectos('norelacional')">NoSQL</button>
     </div>
     <div class="proyectos-grid">
       <div class="proyecto-card" data-category="python data" onclick="abrirProyecto('proyecto1')">
@@ -423,13 +424,17 @@
         <img src="utils/google-sheets-logo.png" alt="Proyecto 2">
         <p>Cartera de inversiones con Google Sheets</p>
       </div>
-      <div class="proyecto-card" data-category="python data" onclick="abrirProyecto('proyecto3')">
+      <div class="proyecto-card" data-category="python data sql" onclick="abrirProyecto('proyecto3')">
         <img src="utils/logo-python-sql.png" alt="Proyecto 3">
         <p>Web Scraping y Analisis de Datos</p>
       </div>
       <div class="proyecto-card" data-category="powerbi data" onclick="abrirProyecto('proyecto4')">
         <img src="utils/logo-powerbi.png" alt="Proyecto 4">
         <p>Dashboard de Análisis Comercial - BMW</p>
+      </div>
+      <div class="proyecto-card" data-category="python norelacional data" onclick="abrirProyecto('proyecto5')">
+        <img src="utils/NoSQL-logo.png" alt="Proyecto 5">
+        <p>TravelData NoSQL: Integración Multimodelo con MongoDB, Redis y Neo4j</p>
       </div>
 
     </div>
@@ -529,6 +534,21 @@
     </div>
   </div>
 
+  <div id="proyecto5" class="modal" onclick="cerrarClickFuera(event, 'proyecto5')">
+    <a href="https://github.com/JoacoLucen/BD-non-relational-Project" target="_blank" class="proyecto-link">
+      Ver Proyecto en GitHub
+    </a>
+    <span class="close" onclick="cerrarProyecto('proyecto5')">&times;</span>
+    <p>
+      <strong>TravelData NoSQL: Integración Multimodelo con MongoDB, Redis y Neo4j:</strong><br><br>
+      Este proyecto, desarrollado en la materia "Bases de Datos" en la UNLP, consistió en el diseño e implementación de un ecosistema de datos multimodelo para una plataforma ficticia de gestión de viajes. El desafío central fue garantizar la <strong>coherencia de los datos</strong> al distribuir la información en tres tecnologías distintas, utilizando <strong>Python</strong> como lenguaje integrador para realizar cargas masivas y manipulaciones complejas.
+      La arquitectura se dividió estratégicamente según la naturaleza de la información:<br><br>
+      <strong>MongoDB (Documental):</strong> Utilizada para almacenar el núcleo de la aplicación, incluyendo perfiles de usuario, destinos turísticos con sus actividades, información de hoteles e historial de reservas confirmadas. Elegida por su flexibilidad para manejar esquemas no uniformes y su estructura orientada a documentos que se asemeja a los objetos de Python.<br><br>
+      <strong>Redis (Clave-Valor):</strong> Implementada para gestionar datos de baja latencia en memoria RAM. Se utilizó para el almacenamiento de la caché de búsquedas, el registro de usuarios conectados mediante estructuras de <em>Sets</em> y la gestión de reservas temporales con tiempos de vida (TTL) definidos para limpieza automática.<br><br>
+      <strong>Neo4j (Grafos):</strong> El motor principal para el sistema de recomendaciones. Utilicé el lenguaje <strong>Cypher</strong> para modelar y consultar relaciones entre usuarios (amistades) y sus interacciones con los destinos (visitas). Esto permitió resolver problemas complejos, como sugerir destinos que ni el usuario ni su círculo cercano han visitado aún.<br><br>
+      Mediante el desarrollo de pipelines en <strong>Jupyter Notebooks</strong>, automaticé la ingesta masiva de datos y creé un módulo de consultas avanzadas que demuestra la interoperabilidad entre motores. Logré realizar procesos críticos como la eliminación sincronizada de usuarios en múltiples bases de datos y el análisis estadístico de los destinos más visitados.
+    </p>
+  </div>
 
   <script>
     // Lógica del Tema Oscuro / Claro
