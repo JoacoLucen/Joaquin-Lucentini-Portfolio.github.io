@@ -8,27 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* --- DEFINICIÓN DE COLORES (Variables CSS) --- */
+    /* --- DEFINICIÓN DE COLORES (Tema Oscuro Único) --- */
     :root {
-      /* Tema CLARO (Default) - Minimalista y Elegante */
-      --bg-body: #fafafa;           /* Gris muy claro, casi blanco */
-      --bg-header: #ffffff;         /* Blanco puro */
-      --bg-card: #ffffff;           /* Blanco puro para tarjetas */
-      --bg-modal: rgba(255, 255, 255, 0.95);
-      --bg-modal-text: #f0f0f0;
-      
-      --text-main: #333333;         /* Gris oscuro para texto */
-      --text-muted: #555555;
-      
-      --border-color: #e0e0e0;      /* Bordes sutiles */
-      --accent-color: #333333;      /* Acentos en gris oscuro (minimalista) */
-      --hover-color: #000000;       /* Negro al pasar mouse */
-      --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave */
-      --icon-filter: none;          /* Iconos originales */
-    }
-
-    [data-theme="dark"] {
-      /* Tema OSCURO - Basado en tu diseño original */
       --bg-body: #0d0d0d;
       --bg-header: #1a1a1a;
       --bg-card: #1f1f1f;
@@ -40,19 +21,17 @@
 
       --border-color: #333333;
       --accent-color: #eaeaea;
-      --hover-color: #00ff99;       /* Acento neón original */
+      --hover-color: #8b5cf6;       /* Acento violeta moderno y formal */
       --shadow-card: 0px 4px 20px rgba(0, 0, 0, 0.6);
-      --icon-filter: brightness(0) invert(1); /* Invertir iconos negros a blancos */
     }
 
     /* --- ESTILOS GENERALES --- */
     body {
       margin: 0;
       padding: 0;
-      font-family: "Courier New", monospace; /* Mantenemos tu fuente */
+      font-family: "Courier New", monospace;
       background-color: var(--bg-body);
       color: var(--text-main);
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     a {
@@ -63,12 +42,11 @@
 
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center; /* Centrado ya que no hay botón de tema */
       align-items: center;
       padding: 1rem 2rem;
       background-color: var(--bg-header);
       border-bottom: 1px solid var(--border-color);
-      transition: background-color 0.3s ease, border-color 0.3s ease;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -81,24 +59,6 @@
     
     h1 { font-size: 1.5rem; }
     h2 { font-size: 3rem; margin-bottom: 1.5rem; }
-
-    /* Botón de Tema */
-    .theme-toggle-btn {
-      background: none;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-
-    .theme-toggle-btn:hover {
-      background-color: var(--border-color);
-      transform: scale(1.05);
-    }
 
     .section {
       padding: 3rem 2rem;
@@ -114,7 +74,6 @@
       max-width: 1500px;
       margin: auto;
       box-shadow: var(--shadow-card);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .presentacion-box h2 {
@@ -136,7 +95,7 @@
       gap: 2rem;
       align-items: flex-start;
       justify-content: center;
-      flex-wrap: wrap; /* Para móviles */
+      flex-wrap: wrap;
     }
 
     .perfil {
@@ -150,6 +109,7 @@
       height: 300px;
       border-radius: 20%;
       object-fit: cover;
+      object-position: center 30%;
       border: 3px solid var(--border-color);
       transition: border-color 0.3s;
     }
@@ -186,7 +146,7 @@
 
     .cv-link {
       display: inline-block;
-      background: var(--text-main); /* Invertido para contraste */
+      background: var(--text-main); 
       color: var(--bg-body);
       padding: 0.8rem 1.5rem;
       border-radius: 8px;
@@ -198,15 +158,9 @@
 
     .cv-link:hover {
       background: var(--hover-color);
-      color: #000; /* Texto negro en hover si es neón */
+      color: #ffffff; 
       transform: scale(1.05);
     }
-    
-    /* Ajuste para tema claro: si el hover es negro, texto blanco */
-    [data-theme="light"] .cv-link:hover {
-        color: #fff;
-    }
-
 
     /* --- HERRAMIENTAS --- */
     .herramientas-icons {
@@ -217,19 +171,10 @@
       margin-top: 1rem;
     }
 
-    /* En tema claro usamos los iconos originales, en oscuro invertimos si son negros puros */
     .herramientas-icons img {
       width: 70px;
       height: 70px;
       transition: transform 0.3s;
-      /* Truco: Algunos iconos de devicon son negros, otros color. 
-         Si quieres forzar blanco en oscuro usa filtro, sino déjalos natural */
-    }
-    
-    /* Aplicar filtro solo en modo oscuro para iconos negros */
-    [data-theme="dark"] .herramientas-icons img {
-        /* Opcional: si quieres que todos se vean blancos en dark mode */
-        /* filter: brightness(0) invert(1); */ 
     }
 
     .herramientas-icons img:hover {
@@ -237,6 +182,30 @@
     }
 
     /* --- PROYECTOS --- */
+    .filtros-proyectos {
+      text-align: center; 
+      margin-bottom: 2rem;
+    }
+
+    .filtros-proyectos button {
+      background: none;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin: 0.2rem;
+    }
+
+    .filtros-proyectos button:hover {
+      background-color: var(--border-color);
+      color: var(--hover-color);
+      transform: scale(1.05);
+    }
+
     .proyectos-grid {
       display: flex;
       gap: 2rem;
@@ -251,14 +220,14 @@
       padding: 1rem;
       width: 280px;
       cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
       text-align: center;
       box-shadow: var(--shadow-card);
     }
 
     .proyecto-card:hover {
       transform: scale(1.05);
-      border-color: var(--text-main);
+      border-color: var(--hover-color);
     }
 
     .proyecto-card img {
@@ -278,11 +247,11 @@
       z-index: 1000;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: var(--bg-modal); /* Fondo semitransparente según tema */
+      background: var(--bg-modal);
       overflow: auto;
       padding: 2rem;
       text-align: center;
-      backdrop-filter: blur(5px); /* Efecto borroso elegante */
+      backdrop-filter: blur(5px);
     }
 
     .modal-content img {
@@ -304,25 +273,29 @@
       font-size: 1.2rem;
       box-shadow: var(--shadow-card);
       color: var(--text-main);
+      position: relative; /* Para dar contexto al contenido */
     }
 
     .modal-content {
       margin-top: 2rem;
     }
 
+    /* Solución de la 'X' */
     .modal .close {
       position: fixed;
       top: 30px;
-      right: 40px;
-      font-size: 3rem;
+      /* Mantiene la X más cerca del contenido central en lugar de la esquina extrema */
+      right: max(5%, calc(50vw - 520px)); 
+      font-size: 3.5rem;
       cursor: pointer;
       color: var(--text-main);
-      transition: transform 0.2s;
+      transition: transform 0.2s, color 0.2s;
+      z-index: 2000; /* Asegura que ningún otro elemento lo tape */
     }
 
     .modal .close:hover {
       transform: scale(1.2);
-      color: #ff4d4d;
+      color: var(--hover-color);
     }
 
     .proyecto-link {
@@ -338,18 +311,15 @@
 
     .proyecto-link:hover {
       background: var(--hover-color);
-      color: #000;
+      color: #ffffff;
       transform: scale(1.05);
     }
 
   </style>
 </head>
-<body data-theme="dark"> <header>
+<body> 
+  <header>
     <h1>Lucentini Joaquin | Portfolio</h1>
-    
-    <button class="theme-toggle-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Cambiar tema">
-      <i class="fas fa-sun"></i> Tema Claro
-    </button>
   </header>
 
   <section class="section">
@@ -358,7 +328,7 @@
       
       <div class="sobre-mi">
         <div class="perfil">
-          <img src="utils/perfil.jpg" alt="Foto de perfil">
+          <img src="utils/perfil.jpeg" alt="Foto de perfil">
           <div>
             <a href="https://github.com/JoacoLucen" target="_blank">
               <i class="fab fa-github"></i>
@@ -407,14 +377,15 @@
   <section class="section">
     <h2>Proyectos</h2>
     <!-- FILTROS -->
-    <div class="filtros-proyectos" style="text-align:center; margin-bottom:2rem;">
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('all')">Todos</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('python')">Python</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('data')">Data</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('google sheets')">Google Sheets</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('sql')">SQL</button>
-      <button class="theme-toggle-btn" onclick="filtrarProyectos('norelacional')">NoSQL</button>
+    <div class="filtros-proyectos">
+      <button onclick="filtrarProyectos('all')">Todos</button>
+      <button onclick="filtrarProyectos('python')">Python</button>
+      <button onclick="filtrarProyectos('data')">Data</button>
+      <button onclick="filtrarProyectos('google sheets')">Google Sheets</button>
+      <button onclick="filtrarProyectos('sql')">SQL</button>
+      <button onclick="filtrarProyectos('norelacional')">NoSQL</button>
     </div>
+    
     <div class="proyectos-grid">
       <div class="proyecto-card" data-category="python data" onclick="abrirProyecto('proyecto1')">
         <img src="utils/python-logo.png" alt="Proyecto 1">
@@ -436,7 +407,6 @@
         <img src="utils/NoSQL-logo.png" alt="Proyecto 5">
         <p>TravelData NoSQL: Integración Multimodelo con MongoDB, Redis y Neo4j</p>
       </div>
-
     </div>
   </section>
 
@@ -447,11 +417,7 @@
       Utilicé Python para la limpieza y visualización de la EPH (Encuesta Permanente de Hogares) y mostré los resultados de una forma interactiva usando Streamlit.<br><br>
       <em>Objetivo:</em> Aplicar mis conocimientos y estudios para crear de forma práctica y simple indicadores demográficos mediante objetos gráficos.
     </p>
-
-    <a href="https://github.com/JoacoLucen/EPH-Insight-App" target="_blank" class="proyecto-link">
-      Ver Proyecto en GitHub
-    </a>
-
+    <a href="https://github.com/JoacoLucen/EPH-Insight-App" target="_blank" class="proyecto-link">Ver Proyecto en GitHub</a>
     <div class="modal-content">
       <img src="utils/proyecto1-python.png">
       <img src="utils/proyecto1.1-python.png">
@@ -468,10 +434,7 @@
       Usé herramientas como Google Sheets y Google Finance para crear una plantilla que permitiera tener un control de un portfolio de inversiones.<br><br>
       <em>Objetivo:</em> Generar una plantilla que ayude a las personas a controlar sus activos financieros, obteniendo datos pasados y presentes, gastos, ingresos, promedios y rentabilidad, bajo un modelo FIFO (primero entrado - primero salido).
     </p>
-
-    <a href="https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing" target="_blank" class="proyecto-link">
-      Ver Proyecto en Google Sheets
-    </a>
+    <a href="https://docs.google.com/spreadsheets/d/1MOAbafLv-NISA2nb2gy0AmwRGHegZyXV7TNal1StVgE/edit?usp=sharing" target="_blank" class="proyecto-link">Ver Proyecto en Google Sheets</a>
     <div class="modal-content">
       <img src="utils/proyecto1-sheets.png">
       <img src="utils/proyecto1.1-sheets.png">
@@ -488,10 +451,7 @@
       Creé un script en Python que permite realizar web scraping de títulos en diferentes páginas web de medios de noticias en Argentina y los almacena en SQLite. Luego, utilizando Streamlit, se ejecuta una limpieza de los datos y se representan gráficamente.<br><br>
       Agregué una funcionalidad "automatizada" para poder descargar un archivo .pdf con los datos generados y su respectivo Análisis.
     </p>
-
-    <a href="https://github.com/JoacoLucen/scraping_web" target="_blank" class="proyecto-link">
-      Ver Proyecto en GitHub
-    </a>
+    <a href="https://github.com/JoacoLucen/scraping_web" target="_blank" class="proyecto-link">Ver Proyecto en GitHub</a>
     <div class="modal-content">
       <img src="utils/proyecto3-python.png">
       <img src="utils/proyecto3.1-python.png">
@@ -502,84 +462,38 @@
 
   <div id="proyecto4" class="modal" onclick="cerrarClickFuera(event, 'proyecto4')">
     <span class="close" onclick="cerrarProyecto('proyecto4')">&times;</span>
-
     <p>
       <strong>Dashboard de Análisis Comercial - BMW:</strong><br><br>
       Creé un dashboard interactivo utilizando Power BI para analizar datos de ventas de BMW por año, modelos, tipo de combustible, region, etc. 
       El mismo incluye tarjetas, graficos, ToolTip´s Personalizados, Imagenes por filtro (donde cree archivos con cada una de las imagenes y las incorporé mediante medidas DAX) y otras herramientas visuales que me permitieron realizar el proyecto.<br><br>
       Por ultimo quiero destacar que se realizó a lo largo del proyecto todo el ciclo ETL (dentro de Power BI) ,y la creación estética y visual del dashboard. 
     </p>
-
-    <a href="https://github.com/JoacoLucen/BMW-Sales-Analysis-Power-BI" target="_blank" class="proyecto-link">
-      Ver archivos del proyecto en GitHub
-    </a>
-
+    <a href="https://github.com/JoacoLucen/BMW-Sales-Analysis-Power-BI" target="_blank" class="proyecto-link">Ver archivos del proyecto en GitHub</a>
     <div class="modal-content">
-      <!-- VIDEO -->
-      <video 
-        autoplay 
-        muted 
-        loop 
-        playsinline 
-        width="80%" 
-        style="margin-top:2rem; border-radius:12px;">
-        
+      <video autoplay muted loop playsinline width="80%" style="margin-top:2rem; border-radius:12px;">
         <source src="utils/Grabación Proyecto BI 1.mp4" type="video/mp4">
       </video>
-
-      <!-- IMÁGENES -->
       <img src="utils/proyecto1.1-PowerBI.png">
       <img src="utils/proyecto1.2-PowerBI.png">
-
     </div>
   </div>
 
   <div id="proyecto5" class="modal" onclick="cerrarClickFuera(event, 'proyecto5')">
-    <a href="https://github.com/JoacoLucen/BD-non-relational-Project" target="_blank" class="proyecto-link">
-      Ver Proyecto en GitHub
-    </a>
     <span class="close" onclick="cerrarProyecto('proyecto5')">&times;</span>
     <p>
       <strong>TravelData NoSQL: Integración Multimodelo con MongoDB, Redis y Neo4j:</strong><br><br>
-      Este proyecto, desarrollado en la materia "Bases de Datos" en la UNLP, consistió en el diseño e implementación de un ecosistema de datos multimodelo para una plataforma ficticia de gestión de viajes. El desafío central fue garantizar la <strong>coherencia de los datos</strong> al distribuir la información en tres tecnologías distintas, utilizando <strong>Python</strong> como lenguaje integrador para realizar cargas masivas y manipulaciones complejas.
+      Este proyecto, desarrollado en la materia "Bases de Datos" en la UNLP, consistió en el diseño e implementación de un ecosistema de datos multimodelo para una plataforma ficticia de gestión de viajes. El desafío central fue garantizar la <strong>coherencia de los datos</strong> al distribuir la información en tres tecnologías distintas, utilizando <strong>Python</strong> como lenguaje integrador para realizar cargas masivas y manipulaciones complejas.<br><br>
       La arquitectura se dividió estratégicamente según la naturaleza de la información:<br><br>
       <strong>MongoDB (Documental):</strong> Utilizada para almacenar el núcleo de la aplicación, incluyendo perfiles de usuario, destinos turísticos con sus actividades, información de hoteles e historial de reservas confirmadas. Elegida por su flexibilidad para manejar esquemas no uniformes y su estructura orientada a documentos que se asemeja a los objetos de Python.<br><br>
       <strong>Redis (Clave-Valor):</strong> Implementada para gestionar datos de baja latencia en memoria RAM. Se utilizó para el almacenamiento de la caché de búsquedas, el registro de usuarios conectados mediante estructuras de <em>Sets</em> y la gestión de reservas temporales con tiempos de vida (TTL) definidos para limpieza automática.<br><br>
       <strong>Neo4j (Grafos):</strong> El motor principal para el sistema de recomendaciones. Utilicé el lenguaje <strong>Cypher</strong> para modelar y consultar relaciones entre usuarios (amistades) y sus interacciones con los destinos (visitas). Esto permitió resolver problemas complejos, como sugerir destinos que ni el usuario ni su círculo cercano han visitado aún.<br><br>
       Mediante el desarrollo de pipelines en <strong>Jupyter Notebooks</strong>, automaticé la ingesta masiva de datos y creé un módulo de consultas avanzadas que demuestra la interoperabilidad entre motores. Logré realizar procesos críticos como la eliminación sincronizada de usuarios en múltiples bases de datos y el análisis estadístico de los destinos más visitados.
     </p>
+    <a href="https://github.com/JoacoLucen/BD-non-relational-Project" target="_blank" class="proyecto-link">Ver Proyecto en GitHub</a>
   </div>
 
   <script>
-    // Lógica del Tema Oscuro / Claro
-    const body = document.body;
-    const themeBtn = document.getElementById('themeBtn');
-    
-    // Función para actualizar el texto e icono del botón
-    function updateButton(theme) {
-      if(theme === 'dark') {
-        themeBtn.innerHTML = '<i class="fas fa-sun"></i> Tema Claro';
-      } else {
-        themeBtn.innerHTML = '<i class="fas fa-moon"></i> Tema Oscuro';
-      }
-    }
-
-    // Inicializar botón según el estado actual
-    updateButton(body.getAttribute('data-theme'));
-
-    function toggleTheme() {
-      const currentTheme = body.getAttribute('data-theme');
-      
-      if (currentTheme === 'dark') {
-        body.setAttribute('data-theme', 'light');
-        updateButton('light');
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        updateButton('dark');
-      }
-    }
-
-    // Lógica de Modales (Simplificada ya que no hay idioma)
+    // Lógica de Modales
     function abrirProyecto(id) {
       document.getElementById(id).style.display = "block";
     }
@@ -608,9 +522,6 @@
         }
       });
     }
-
   </script>
 </body>
 </html>
-
-
